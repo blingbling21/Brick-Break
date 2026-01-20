@@ -1,0 +1,245 @@
+[gd_scene load_steps=12 format=3 uid="uid://bq6upyvxnf8ao"]
+
+[ext_resource type="Script" uid="uid://onhxd1lg8e2w" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://b28bgdf0e7hht" path="res://挡板.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c376hki3hvlc7" path="res://球.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bhnmdflmi6f1p" path="res://Brick.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://cnmdavkf046yp" path="res://砖块区域.gd" id="4_lquwl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7dm0k"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ig7tw"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
+normal = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(100, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(1150, 100)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_7mycd")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="开始界面" type="Control" parent="GUI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/开始界面"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/开始界面/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/开始界面/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "打砖块"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="开始按钮" type="Button" parent="GUI/开始界面/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "开始游戏"
+
+[node name="结束界面" type="Control" parent="GUI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/结束界面"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/结束界面/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/结束界面/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "游戏结束"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="最终分数" type="Label" parent="GUI/结束界面/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "得分：0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="重开按钮" type="Button" parent="GUI/结束界面/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "重新开始"
+
+[node name="分数显示" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="分数" type="Label" parent="GUI/分数显示"]
+layout_mode = 0
+offset_left = 939.0
+offset_top = 30.0
+offset_right = 1029.0
+offset_bottom = 53.0
+text = "当前得分：0"
+
+[node name="倒计时显示" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/倒计时显示"]
+layout_mode = 0
+offset_left = 276.0
+offset_right = 876.0
+offset_bottom = 648.0
+pivot_offset = Vector2(300, 324)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 128
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="游戏管理" type="Node2D" parent="."]
+
+[node name="墙" type="Node2D" parent="游戏管理"]
+
+[node name="左墙" type="StaticBody2D" parent="游戏管理/墙"]
+position = Vector2(276, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/墙/左墙"]
+shape = SubResource("WorldBoundaryShape2D_7dm0k")
+
+[node name="ColorRect" type="ColorRect" parent="游戏管理/墙/左墙"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 648.0
+grow_horizontal = 0
+color = Color(1, 0.55628604, 0.49291265, 1)
+
+[node name="右墙" type="StaticBody2D" parent="游戏管理/墙"]
+position = Vector2(876, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/墙/右墙"]
+shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="游戏管理/墙/右墙"]
+offset_right = 40.0
+offset_bottom = 648.0
+color = Color(1, 0.5568628, 0.49411765, 1)
+
+[node name="上墙" type="StaticBody2D" parent="游戏管理/墙"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/墙/上墙"]
+shape = SubResource("WorldBoundaryShape2D_0xm2m")
+
+[node name="挡板" type="CharacterBody2D" parent="游戏管理"]
+position = Vector2(576, 620)
+collision_layer = 2
+script = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/挡板"]
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="ColorRect" type="ColorRect" parent="游戏管理/挡板"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 10)
+
+[node name="球" type="CharacterBody2D" parent="游戏管理"]
+position = Vector2(576, 600)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("2_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/球"]
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="游戏管理/球"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(5, 5)
+color = Color(1, 0, 0, 1)
+
+[node name="死亡区域" type="Area2D" parent="游戏管理"]
+position = Vector2(576, 740)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/死亡区域"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="砖块区域" type="Node2D" parent="游戏管理"]
+position = Vector2(276, 0)
+script = ExtResource("4_lquwl")
+brick_scene = ExtResource("4_1bvp3")
+
+[connection signal="pressed" from="GUI/开始界面/HBoxContainer/VBoxContainer/开始按钮" to="." method="_on_开始按钮_pressed"]
+[connection signal="pressed" from="GUI/结束界面/HBoxContainer/VBoxContainer/重开按钮" to="." method="_on_重开按钮_pressed"]
+[connection signal="body_entered" from="游戏管理/死亡区域" to="." method="_on_死亡区域_body_entered"]
+[connection signal="update_brick_count" from="游戏管理/砖块区域" to="." method="_on_砖块区域_update_brick_count"]
+[connection signal="update_score" from="游戏管理/砖块区域" to="." method="_on_砖块区域_update_score"]

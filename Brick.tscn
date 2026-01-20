@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhnmdflmi6f1p"]
+
+[ext_resource type="Script" uid="uid://c240afy30hk4f" path="res://brick.gd" id="1_jfaf4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73kpp"]
+size = Vector2(60, 20)
+
+[node name="Brick" type="StaticBody2D" groups=["Bricks"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_jfaf4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(30, 10)
+shape = SubResource("RectangleShape2D_73kpp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 60.0
+offset_bottom = 20.0
