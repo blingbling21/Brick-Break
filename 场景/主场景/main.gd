@@ -8,9 +8,11 @@ extends Node2D
 @onready var countdown_screen: Control = $GUI/倒计时显示
 @onready var countdown_screen_label: Label = $GUI/倒计时显示/Label
 @onready var score_label: Label = $GUI/分数显示/分数
+@onready var brick_count_label: Label = $GUI/分数显示/剩余砖块
 @onready var final_score_label: Label = $GUI/结束界面/HBoxContainer/VBoxContainer/最终分数
 @onready var brick_area: Node2D = $游戏管理/砖块区域
 @onready var game_world: Node2D = $游戏管理
+@onready var game_over_label: Label = $GUI/结束界面/HBoxContainer/VBoxContainer/Label
 
 # 得分
 var score := 0
@@ -52,6 +54,7 @@ func reset_game():
 	ball.reset()
 	baffle.reset()
 	score = 0
+	brick_count = 0
 	brick_area.generate_bricks()
 	update_score_display()
 
@@ -66,9 +69,11 @@ func start_countdown():
 		countdown_screen_label.scale = Vector2.ZERO
 		var tween = create_tween()
 		tween.tween_property(countdown_screen_label, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		AudioManager.play_countdown_timing()
 		await get_tree().create_timer(1.0).timeout
 	
 	countdown_screen_label.text = "开始！"
+	AudioManager.play_countdown_timeout()
 	await get_tree().create_timer(0.5).timeout
 	
 	countdown_screen.visible = false
@@ -76,10 +81,12 @@ func start_countdown():
 # 更新当前得分显示
 func update_score_display():
 	score_label.text = "当前得分： " + str(score)
+	brick_count_label.text = "剩余砖块： " + str(brick_count)
 
 func _on_死亡区域_body_entered(body: Node2D) -> void:
 	if body.name == "球":
-		print("死亡区域")
+		game_over_label.text = "游戏结束"
+		AudioManager.play_game_fail()
 		game_over()
 
 func _on_开始按钮_pressed() -> void:
@@ -90,10 +97,11 @@ func _on_重开按钮_pressed() -> void:
 
 func _on_砖块区域_update_score(score_value: int) -> void:
 	score += score_value
-	update_score_display()
 	brick_count -= 1
+	update_score_display()
 	if brick_count <= 0:
-		print("brick_count <= 0")
+		game_over_label.text = "WIN !!!"
+		AudioManager.play_game_win()
 		game_over()
 
 func _on_砖块区域_update_brick_count(count: int) -> void:

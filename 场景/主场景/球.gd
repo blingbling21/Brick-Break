@@ -7,10 +7,12 @@ extends CharacterBody2D
 func _physics_process(delta: float) -> void:
 	var collidion = move_and_collide(velocity * delta)
 	if collidion:
+		AudioManager.play_ball_hit()
 		velocity = velocity.bounce(collidion.get_normal())
 		var collider = collidion.get_collider()
 		if collider is CharacterBody2D:
 			velocity.x += collider.velocity.x * velocity_x
+			velocity = velocity.normalized() * initial_speed
 		elif collider.is_in_group("Bricks"):
 			collider.hit()
 

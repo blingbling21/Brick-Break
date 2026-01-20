@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bq6upyvxnf8ao"]
+[gd_scene load_steps=14 format=3 uid="uid://bq6upyvxnf8ao"]
 
-[ext_resource type="Script" uid="uid://onhxd1lg8e2w" path="res://main.gd" id="1_7mycd"]
-[ext_resource type="Script" uid="uid://b28bgdf0e7hht" path="res://挡板.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://c376hki3hvlc7" path="res://球.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://bhnmdflmi6f1p" path="res://Brick.tscn" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://cnmdavkf046yp" path="res://砖块区域.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://onhxd1lg8e2w" path="res://场景/主场景/main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://b28bgdf0e7hht" path="res://场景/主场景/挡板.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c376hki3hvlc7" path="res://场景/主场景/球.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dcb6vryqclclv" path="res://类/SoundButton.gd" id="2_v0jic"]
+[ext_resource type="PackedScene" uid="uid://bhnmdflmi6f1p" path="res://场景/砖块场景/Brick.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://cnmdavkf046yp" path="res://场景/主场景/砖块区域.gd" id="4_lquwl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7dm0k"]
 normal = Vector2(1, 0)
@@ -15,8 +16,15 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
 normal = Vector2(0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
-size = Vector2(100, 20)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lquwl"]
+height = 100.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(10, 10)
@@ -61,6 +69,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "开始游戏"
+script = ExtResource("2_v0jic")
+metadata/_custom_type_script = "uid://dcb6vryqclclv"
 
 [node name="结束界面" type="Control" parent="GUI"]
 visible = false
@@ -100,7 +110,9 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "重新开始"
+text = "重开游戏"
+script = ExtResource("2_v0jic")
+metadata/_custom_type_script = "uid://dcb6vryqclclv"
 
 [node name="分数显示" type="Control" parent="GUI"]
 layout_mode = 3
@@ -115,6 +127,14 @@ offset_top = 30.0
 offset_right = 1029.0
 offset_bottom = 53.0
 text = "当前得分：0"
+
+[node name="剩余砖块" type="Label" parent="GUI/分数显示"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 36.0
+offset_right = 186.0
+offset_bottom = 59.0
+text = "剩余砖块： 0"
 
 [node name="倒计时显示" type="Control" parent="GUI"]
 layout_mode = 3
@@ -186,9 +206,10 @@ collision_layer = 2
 script = ExtResource("1_ig7tw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/挡板"]
-shape = SubResource("RectangleShape2D_7dm0k")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lquwl")
 
-[node name="ColorRect" type="ColorRect" parent="游戏管理/挡板"]
+[node name="Panel" type="Panel" parent="游戏管理/挡板"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -201,6 +222,7 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(50, 10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
 
 [node name="球" type="CharacterBody2D" parent="游戏管理"]
 position = Vector2(576, 600)

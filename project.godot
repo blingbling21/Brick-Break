@@ -15,6 +15,14 @@ run/main_scene="uid://bq6upyvxnf8ao"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout=""
+
+[autoload]
+
+AudioManager="*res://场景/音效场景/音效管理.tscn"
+
 [display]
 
 window/stretch/mode="canvas_items"

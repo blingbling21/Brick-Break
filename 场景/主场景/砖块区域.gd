@@ -4,13 +4,13 @@ extends Node2D
 
 signal update_score(score: int)
 signal update_brick_count(count: int)
-var brick_count := 0
 
 # 生成方块
 func generate_bricks():
 	for child in get_children():
 		child.queue_free()
-	
+
+	var brick_count := 0
 	for x in 10:
 		for y in 5:
 			var brick = brick_scene.instantiate()
