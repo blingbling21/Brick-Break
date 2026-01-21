@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bq6upyvxnf8ao"]
+[gd_scene load_steps=25 format=3 uid="uid://bq6upyvxnf8ao"]
 
 [ext_resource type="Script" uid="uid://onhxd1lg8e2w" path="res://场景/主场景/main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://b28bgdf0e7hht" path="res://场景/主场景/挡板.gd" id="1_ig7tw"]
@@ -6,6 +6,29 @@
 [ext_resource type="Script" uid="uid://dcb6vryqclclv" path="res://类/SoundButton.gd" id="2_v0jic"]
 [ext_resource type="PackedScene" uid="uid://bhnmdflmi6f1p" path="res://场景/砖块场景/Brick.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://cnmdavkf046yp" path="res://场景/主场景/砖块区域.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://da2v14487wh0d" path="res://资源/砖块数据/砖块数据.gd" id="7_dtaj0"]
+[ext_resource type="Resource" uid="uid://c8xg7gr06a774" path="res://资源/砖块数据/砖块数据_白色.tres" id="8_7c2yj"]
+[ext_resource type="Resource" uid="uid://pilb0kadfv6v" path="res://资源/砖块数据/砖块数据_蓝色.tres" id="9_qxhba"]
+[ext_resource type="Resource" uid="uid://cqskrlabjwy0b" path="res://资源/砖块数据/砖块数据_红色.tres" id="10_2s7da"]
+[ext_resource type="Resource" uid="uid://frxs1gvv0iww" path="res://资源/砖块数据/砖块数据_金色.tres" id="11_idkn5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtaj0"]
+bg_color = Color(0.59607846, 0.7137255, 0.8666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s7da"]
+bg_color = Color(0.59607846, 0.7137255, 0.8666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxhba"]
+bg_color = Color(0.59607846, 0.7137255, 0.8666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c2yj"]
+bg_color = Color(0.59607846, 0.7137255, 0.8666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idkn5"]
+bg_color = Color(0.59607846, 0.7137255, 0.8666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36gte"]
+bg_color = Color(0.59607846, 0.7137255, 0.8666667, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7dm0k"]
 normal = Vector2(1, 0)
@@ -38,7 +61,6 @@ script = ExtResource("1_7mycd")
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="开始界面" type="Control" parent="GUI"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -68,6 +90,10 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dtaj0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2s7da")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qxhba")
 text = "开始游戏"
 script = ExtResource("2_v0jic")
 metadata/_custom_type_script = "uid://dcb6vryqclclv"
@@ -110,6 +136,10 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7c2yj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_idkn5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_36gte")
 text = "重开游戏"
 script = ExtResource("2_v0jic")
 metadata/_custom_type_script = "uid://dcb6vryqclclv"
@@ -259,6 +289,7 @@ shape = SubResource("RectangleShape2D_0xm2m")
 position = Vector2(276, 0)
 script = ExtResource("4_lquwl")
 brick_scene = ExtResource("4_1bvp3")
+brick_data_res = Array[ExtResource("7_dtaj0")]([ExtResource("8_7c2yj"), ExtResource("9_qxhba"), ExtResource("10_2s7da"), ExtResource("11_idkn5")])
 
 [connection signal="pressed" from="GUI/开始界面/HBoxContainer/VBoxContainer/开始按钮" to="." method="_on_开始按钮_pressed"]
 [connection signal="pressed" from="GUI/结束界面/HBoxContainer/VBoxContainer/重开按钮" to="." method="_on_重开按钮_pressed"]

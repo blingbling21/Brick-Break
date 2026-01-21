@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c8hxs07u2wmxq"
-path="res://.godot/imported/球出界.wav-2a3c3d7ed1038256d2b865d7856faee5.sample"
+path="res://.godot/imported/球出界.wav-faab80f403d3f413ac684052d0be4174.sample"
 
 [deps]
 
-source_file="res://资源/音效/球出界.wav"
-dest_files=["res://.godot/imported/球出界.wav-2a3c3d7ed1038256d2b865d7856faee5.sample"]
+source_file="res://资产/音效/球出界.wav"
+dest_files=["res://.godot/imported/球出界.wav-faab80f403d3f413ac684052d0be4174.sample"]
 
 [params]
 

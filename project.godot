@@ -33,3 +33,7 @@ window/stretch/mode="canvas_items"
 2d_physics/layer_2="挡板"
 2d_physics/layer_3="球"
 2d_physics/layer_4="砖块"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

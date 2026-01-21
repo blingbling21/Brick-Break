@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BrickData" load_steps=2 format=3 uid="uid://c8xg7gr06a774"]
+
+[ext_resource type="Script" uid="uid://da2v14487wh0d" path="res://资源/砖块数据/砖块数据.gd" id="1_3hqnr"]
+
+[resource]
+script = ExtResource("1_3hqnr")
+metadata/_custom_type_script = "uid://da2v14487wh0d"

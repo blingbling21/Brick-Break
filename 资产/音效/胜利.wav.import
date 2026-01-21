@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dptlaspboesuv"
-path="res://.godot/imported/胜利.wav-0095cea67ad38b2fd74764acd54d7831.sample"
+path="res://.godot/imported/胜利.wav-83715f52b84655270d8e0a6c9aed0884.sample"
 
 [deps]
 
-source_file="res://资源/音效/胜利.wav"
-dest_files=["res://.godot/imported/胜利.wav-0095cea67ad38b2fd74764acd54d7831.sample"]
+source_file="res://资产/音效/胜利.wav"
+dest_files=["res://.godot/imported/胜利.wav-83715f52b84655270d8e0a6c9aed0884.sample"]
 
 [params]
 

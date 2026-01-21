@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhnmdflmi6f1p"]
+[gd_scene load_steps=4 format=3 uid="uid://bhnmdflmi6f1p"]
 
 [ext_resource type="Script" uid="uid://c240afy30hk4f" path="res://场景/砖块场景/brick.gd" id="1_jfaf4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73kpp"]
 size = Vector2(60, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jego4"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [node name="Brick" type="StaticBody2D" groups=["Bricks"]]
 collision_layer = 8
@@ -14,6 +23,7 @@ script = ExtResource("1_jfaf4")
 position = Vector2(30, 10)
 shape = SubResource("RectangleShape2D_73kpp")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 offset_right = 60.0
 offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jego4")

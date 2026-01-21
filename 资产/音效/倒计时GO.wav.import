@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://kugne0jssjt5"
-path="res://.godot/imported/倒计时GO.wav-a99d7c823a2772552c1ba5a722d23fed.sample"
+path="res://.godot/imported/倒计时GO.wav-bf3c3f3453901e68428a81d8cc6d3374.sample"
 
 [deps]
 
-source_file="res://资源/音效/倒计时GO.wav"
-dest_files=["res://.godot/imported/倒计时GO.wav-a99d7c823a2772552c1ba5a722d23fed.sample"]
+source_file="res://资产/音效/倒计时GO.wav"
+dest_files=["res://.godot/imported/倒计时GO.wav-bf3c3f3453901e68428a81d8cc6d3374.sample"]
 
 [params]
 
