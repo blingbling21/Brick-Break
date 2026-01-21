@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://tx4uhuifdqrr"
+
+[deps]
+
+files=["res://资产/多语言/多语言.en.translation", "res://资产/多语言/多语言.zh.translation"]
+
+source_file="res://资产/多语言/多语言.csv"
+dest_files=["res://资产/多语言/多语言.en.translation", "res://资产/多语言/多语言.zh.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -30,7 +30,6 @@ func generate_bricks():
 
 # 加权随机返回砖块数据
 func pick_brick_data_weighted(total_weight: float) -> BrickData:
-	print("pick_brick_data_weighted total_weight: ", total_weight)
 	var roll = randf() * total_weight
 	var current_weight = 0
 	for data in brick_data_res:

@@ -27,6 +27,14 @@ AudioManager="*res://场景/音效场景/音效管理.tscn"
 
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="uid://dv62g41e47vln"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://资产/多语言/多语言.en.translation", "res://资产/多语言/多语言.zh.translation")
+
 [layer_names]
 
 2d_physics/layer_1="墙、死亡区域等"

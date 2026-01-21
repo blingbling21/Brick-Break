@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://bq6upyvxnf8ao"]
+[gd_scene load_steps=27 format=3 uid="uid://bq6upyvxnf8ao"]
 
 [ext_resource type="Script" uid="uid://onhxd1lg8e2w" path="res://场景/主场景/main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://b28bgdf0e7hht" path="res://场景/主场景/挡板.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c376hki3hvlc7" path="res://场景/主场景/球.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dcb6vryqclclv" path="res://类/SoundButton.gd" id="2_v0jic"]
+[ext_resource type="Script" uid="uid://blhe1eqdetpr2" path="res://类/DynamicLabel.gd" id="3_7c2yj"]
 [ext_resource type="PackedScene" uid="uid://bhnmdflmi6f1p" path="res://场景/砖块场景/Brick.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://cnmdavkf046yp" path="res://场景/主场景/砖块区域.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://da2v14487wh0d" path="res://资源/砖块数据/砖块数据.gd" id="7_dtaj0"]
@@ -49,8 +50,15 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(10, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dtaj0"]
+radius = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1jnf"]
+bg_color = Color(0.48747635, 0.76234657, 0.93235946, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1150, 100)
@@ -61,6 +69,7 @@ script = ExtResource("1_7mycd")
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="开始界面" type="Control" parent="GUI"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -81,7 +90,7 @@ alignment = 1
 [node name="Label" type="Label" parent="GUI/开始界面/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "打砖块"
+text = "GAME_TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -94,7 +103,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_dtaj0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2s7da")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qxhba")
-text = "开始游戏"
+text = "BTN_START"
 script = ExtResource("2_v0jic")
 metadata/_custom_type_script = "uid://dcb6vryqclclv"
 
@@ -120,16 +129,22 @@ alignment = 1
 [node name="Label" type="Label" parent="GUI/结束界面/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "游戏结束"
+text = "GAME_OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_7c2yj")
+trans_key = "GAME_OVER"
+metadata/_custom_type_script = "uid://blhe1eqdetpr2"
 
 [node name="最终分数" type="Label" parent="GUI/结束界面/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "得分：0"
+text = "FINAL_SCORE"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_7c2yj")
+trans_key = "FINAL_SCORE"
+metadata/_custom_type_script = "uid://blhe1eqdetpr2"
 
 [node name="重开按钮" type="Button" parent="GUI/结束界面/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -140,7 +155,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_7c2yj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_idkn5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_36gte")
-text = "重开游戏"
+text = "BTN_RESTART"
 script = ExtResource("2_v0jic")
 metadata/_custom_type_script = "uid://dcb6vryqclclv"
 
@@ -156,17 +171,24 @@ offset_left = 939.0
 offset_top = 30.0
 offset_right = 1029.0
 offset_bottom = 53.0
-text = "当前得分：0"
+text = "SCORE_LABEL"
+script = ExtResource("3_7c2yj")
+trans_key = "SCORE_LABEL"
+metadata/_custom_type_script = "uid://blhe1eqdetpr2"
 
 [node name="剩余砖块" type="Label" parent="GUI/分数显示"]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 36.0
-offset_right = 186.0
+offset_right = 190.0
 offset_bottom = 59.0
-text = "剩余砖块： 0"
+text = "BRICK_COUNT"
+script = ExtResource("3_7c2yj")
+trans_key = "BRICK_COUNT"
+metadata/_custom_type_script = "uid://blhe1eqdetpr2"
 
 [node name="倒计时显示" type="Control" parent="GUI"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -191,6 +213,9 @@ theme_override_font_sizes/font_size = 128
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_7c2yj")
+trans_key = "COUNTDOWN_TIMEOUT"
+metadata/_custom_type_script = "uid://blhe1eqdetpr2"
 
 [node name="游戏管理" type="Node2D" parent="."]
 
@@ -261,9 +286,9 @@ collision_mask = 11
 script = ExtResource("2_0xm2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="游戏管理/球"]
-shape = SubResource("RectangleShape2D_ig7tw")
+shape = SubResource("CircleShape2D_dtaj0")
 
-[node name="ColorRect" type="ColorRect" parent="游戏管理/球"]
+[node name="Panel" type="Panel" parent="游戏管理/球"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -276,7 +301,7 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(5, 5)
-color = Color(1, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1jnf")
 
 [node name="死亡区域" type="Area2D" parent="游戏管理"]
 position = Vector2(576, 740)

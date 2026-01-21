@@ -1,0 +1,10 @@
+keys,en,zh
+GAME_TITLE,Brick Break,打砖块 
+BTN_START,Start Game ,开始游戏 
+BTN_RESTART,Restart ,重新开始 
+GAME_WIN,You Win ! ! !,你赢了！！！
+GAME_OVER,Game Over,游戏结束
+SCORE_LABEL,Score: %s ,得分： %s 
+BRICK_COUNT,Brick Count: %s,砖块数量： %s
+FINAL_SCORE,Final Score: %s,最终得分： %s
+COUNTDOWN_TIMEOUT,GO !,开始！
